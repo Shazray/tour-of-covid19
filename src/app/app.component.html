@@ -45,6 +45,19 @@
   <span> Data ultimo aggiornamento </span>
   {{nazione.data}}
 
+
+
+  <div>
+
+    <button class="btn" (click)="refresh()">
+            Refresh <span class="badge badge-primary"></span>
+    </button>
+
+    <button class="btn" (click)="forceRefresh()">
+      Force Refresh <span class="badge badge-primary"></span>
+</button>
+  </div>
+
   <!-- <div [ngSwitch]="tabName">
     <app-dettaglio [value]="listaTotaliReg" [title]="'Regioni'" *ngSwitchCase="'Regioni'"></app-dettaglio>
     <app-dettaglio [title]="'Province'" *ngSwitchCase="'Province'"></app-dettaglio>

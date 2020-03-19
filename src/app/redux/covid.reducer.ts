@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { afterRefresh } from '../redux/covid.action';
 import { AppState } from './index';
+import { doReset } from './covid.action';
 
 export const initialState: AppState = {
   nazioni: [],
@@ -8,14 +9,10 @@ export const initialState: AppState = {
   regioni: [],
   lastNazione: undefined
 };
-/* export const initialState = {
-  nazione: undefined,
-  province: undefined,
-  regione: undefined
-}; */
 
 const reducer = createReducer(initialState,
-  on(afterRefresh, (state, {lastNazione}) => ({...state, lastNazione: lastNazione}))
+  on(afterRefresh, (state, {lastNazione}) => ({...state, lastNazione: lastNazione})),
+  on(doReset, (state) => ({...state, lastNazione: undefined}))
 );
 
 export function covidReducer(state, action) {

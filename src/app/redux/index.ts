@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
+import { Provincia } from 'src/app/models/provincia.interface';
 import { Nazione } from '../models/nazione.interface';
 import { Regione } from '../models/regione.interface';
-import { Provincia } from 'src/app/models/provincia.interface';
 
 export interface AppState {
   nazioni: Nazione[];
@@ -31,3 +31,7 @@ export const selectRegioni = createSelector(
     selectState,
     (state: AppState) => state.regioni
 );
+
+// export const resetSelector = (selector: MemoizedSelector<{covid: AppState}, Nazione>) => selector.release();
+
+// selectLastNazione.release();

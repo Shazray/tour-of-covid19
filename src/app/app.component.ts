@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Provincia } from 'src/app/models/provincia.interface';
 import { Nazione } from './models/nazione.interface';
 import { Regione } from './models/regione.interface';
-import { doRefresh } from './redux/covid.action';
+import { doRefresh, doReset, forceRefresh } from './redux/covid.action';
 import { selectLastNazione } from './redux/index';
 import { ProvinciaService } from './service/provincia/provincia.service';
 import { RegionaleService } from './service/regionale/regionale.service';
@@ -39,7 +39,9 @@ export class AppComponent implements OnInit {
 
     this.store.dispatch(doRefresh());
 
-    this.nazione$.pipe(filter((naz) => !!naz)).subscribe((naz: any) => {
+    this.nazione$.pipe(
+        filter((naz) => !!naz)
+    ).subscribe((naz: any) => {
       console.log('AppState: ' + JSON.stringify(naz));
       this.nazione = naz;
     });
@@ -54,6 +56,15 @@ export class AppComponent implements OnInit {
 
   switchTab(tabName: string): void {
     this.tabName = tabName;
+  }
+
+  forceRefresh() {
+    // resetSelector(selectLastNazione);
+    this.store.dispatch(forceRefresh());
+  }
+
+  refresh() {
+    this.store.dispatch(doRefresh());
   }
 
 }
