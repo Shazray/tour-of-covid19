@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { NazioneActions } from '../actions/nazione.action';
 // import { MoviesService } from './movies.service';
 import { NazionaleService } from '../service/nazionale/nazionale.service';
+import { NazioneActions, afterRefresh } from './covid.action';
 
 @Injectable()
 export class NazioneEffects {
@@ -13,7 +13,7 @@ export class NazioneEffects {
     ofType(NazioneActions.REFRESH_COUNTERS),
     mergeMap(() => this.nazioneService.getUltimoNazionale()
       .pipe(
-        map(nazione => ({type: NazioneActions.REFRESH_COUNTERS_WITH_PAYLOAD, payload: nazione})),
+        map(nazione => afterRefresh({lastNazione: nazione})),
         catchError(() => EMPTY)
       ))
     )

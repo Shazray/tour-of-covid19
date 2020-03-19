@@ -7,4 +7,4 @@ export enum NazioneActions {
 }
 
 export const doRefresh = createAction(NazioneActions.REFRESH_COUNTERS);
-export const afterRefresh = createAction(NazioneActions.REFRESH_COUNTERS_WITH_PAYLOAD, props<{nazione: Nazione}>());
+export const afterRefresh = createAction(NazioneActions.REFRESH_COUNTERS_WITH_PAYLOAD, props<{lastNazione: Nazione}>());

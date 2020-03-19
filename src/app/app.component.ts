@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { Provincia } from 'src/app/models/provincia.interface';
 import { Nazione } from './models/nazione.interface';
 import { Regione } from './models/regione.interface';
-import { NazionaleService } from './service/nazionale/nazionale.service';
+import { doRefresh } from './redux/covid.action';
+import { selectLastNazione } from './redux/index';
 import { ProvinciaService } from './service/provincia/provincia.service';
 import { RegionaleService } from './service/regionale/regionale.service';
-import { Store } from '@ngrx/store';
-import { NazioneActions } from './actions/nazione.action';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -22,28 +23,26 @@ export class AppComponent implements OnInit {
   tabName = 'Regioni';
 
   nazione: Nazione;
-  nazione$: Observable<Nazione> = this.store.select(state => state.nazione);
+  nazione$: Observable<Nazione> = this.store.pipe(select(selectLastNazione));
+  /* nazione$: Observable<Nazione> = this.store.select(state => state.covid); */
   listaTotaliReg: Regione[];
   listaTotaliPro: Provincia[];
 
-  
+  //@ViewChild(ContatoreComponent) contatoreComponent;
 
   constructor(// public nazionaleService: NazionaleService,
               private provinceService: ProvinciaService,
               private regionaleService: RegionaleService,
-              private store: Store<{nazione: Nazione}>) {
-                
-              }
+              private store: Store<any>) {}
 
   ngOnInit(): void {
-    /* this.nazionaleService.getUltimoNazionale().subscribe(
-        naz => this.nazione = naz
-    ); */
-    this.store.dispatch({type: NazioneActions.REFRESH_COUNTERS});
-    this.nazione$.subscribe((naz: Nazione) => {
+
+    this.store.dispatch(doRefresh());
+
+    this.nazione$.pipe(filter((naz) => !!naz)).subscribe((naz: any) => {
+      console.log('AppState: ' + JSON.stringify(naz));
       this.nazione = naz;
     });
-
 
     this.regionaleService.getDettaglioRegioni().subscribe(
       (regioni: Regione[]) => this.listaTotaliReg = regioni

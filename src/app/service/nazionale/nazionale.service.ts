@@ -27,7 +27,7 @@ export class NazionaleService {
               .pipe(
                   take(1),
                   map(naz => naz[naz.length - 1]),
-                  tap(naz => console.log('ultimo nazione: ' + naz))
+                  tap(naz => console.log('ultimo nazione: ' + JSON.stringify(naz)))
               );
   }
 
