@@ -15,6 +15,7 @@ import { ContatoreComponent } from './components/contatore/contatore.component';
 import { DettaglioComponent } from './components/dettaglio/dettaglio.component';
 import { NazioneEffects } from './redux/covid.effects';
 import { covidReducer } from './redux/covid.reducer';
+import { CounterBackgroundColorDirective } from './directives/counter-background-color.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { covidReducer } from './redux/covid.reducer';
     ContatoreComponent,
     ChartNazionaleComponent,
     DettaglioComponent,
-    ChartGiornalieroComponent
+    ChartGiornalieroComponent,
+    CounterBackgroundColorDirective
   ],
   imports: [
     BrowserModule,

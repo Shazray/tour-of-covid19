@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StatisticType } from '../../models/statistic.type';
 
 @Component({
   selector: 'app-contatore',
@@ -12,6 +13,10 @@ export class ContatoreComponent implements OnInit {
 
   @Input()
   valore: number;
+
+  @Input()
+  type: StatisticType;
+
 
   constructor() { }
 

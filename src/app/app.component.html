@@ -4,17 +4,17 @@
     <div class="card-columns">
       <div class="row">
         <div class="col-sm-8">
-          <app-contatore [titolo]="'Attualmente positivi'" [valore]="nazione.totale_attualmente_positivi">
+          <app-contatore [titolo]="'Attualmente positivi'" [valore]="nazione.totale_attualmente_positivi" [type]="'attualmente-positivi'">
           </app-contatore>
         </div>
         <div class="col-sm-auto">
-          <app-contatore [titolo]="'Guariti'" [valore]="nazione.dimessi_guariti"></app-contatore>
+          <app-contatore [titolo]="'Guariti'" [valore]="nazione.dimessi_guariti" [type]="'guariti'"></app-contatore>
         </div>
         <div class="col-sm-auto">
-          <app-contatore [titolo]="'Deceduti'" [valore]="nazione.deceduti"></app-contatore>
+          <app-contatore [titolo]="'Deceduti'" [valore]="nazione.deceduti" [type]="'deceduti'"></app-contatore>
         </div>
         <div class="col-sm-auto">
-          <app-contatore [titolo]="'Totale Positivi'" [valore]="nazione.totale_casi"></app-contatore>
+          <app-contatore [titolo]="'Totale Positivi'" [valore]="nazione.totale_casi" [type]="'positivi'"></app-contatore>
         </div>
       </div>
     </div>
