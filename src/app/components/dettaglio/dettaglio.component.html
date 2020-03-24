@@ -1,13 +1,21 @@
-<div class="card-body height-fix" >
-    <div *ngIf="title === 'Regioni'; else province">
-        <div *ngFor="let regione of value">
-            <p class="card-text">{{regione.denominazione_regione}}: {{regione.totale_casi}} (attuali: {{regione?.totale_attualmente_positivi}})</p>
-        </div>
+<div class="card-body height-fix">
+  <div *ngIf="title === 'Regioni'; else province">
+    <div *ngFor="let regione of value">
+      <p class="card-text">{{regione.denominazione_regione}}: {{regione.totale_casi}} (attuali:
+        {{regione?.totale_attualmente_positivi}})</p>
     </div>
+  </div>
 
-    <ng-template #province>
-        <div *ngFor="let provincia of value">
-            <p class="card-text">{{provincia.denominazione_provincia}} ({{provincia.denominazione_regione}}): {{provincia.totale_casi}}</p>
-        </div>
-    </ng-template>
+  <ng-template #province>
+    <div *ngFor="let provincia of value">
+      <p class="card-text">{{provincia.denominazione_provincia}} ({{provincia.denominazione_regione}}):
+        {{provincia.totale_casi}}</p>
+    </div>
+  </ng-template>
+
+</div>
+<div class="card-body height-fix">
+  <ng-template [appNewNgFor]="value" let-item>
+    {{item?.totale_casi}}
+  </ng-template>
 </div>

@@ -12,11 +12,9 @@ export class DettaglioComponent implements OnInit {
   title: string;
   @Input()
   value: Regione[];
-
   constructor() { }
 
   ngOnInit(): void {
-
   }
 
 }
